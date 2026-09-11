@@ -1,19 +1,19 @@
 #!/bin/bash
 set -e
 
-echo "Starting LicenceWebsite"
+echo "Starting Web-License & Nginx..."
 
-export NGINX_PORT=9639
+export NGINX_PORT=3000
 
 cd /usr/local/x-ui
 
-echo "Applying Settings..."
+echo "Applying 3x-ui settings..."
 ./x-ui setting -port 8088 -webBasePath /dashboard/ || true
 
 echo "Generating nginx.conf from template..."
 envsubst '${NGINX_PORT}' < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf
 
-echo "Starting All ..."
+echo "Starting Web-License..."
 ./x-ui &
 
 sleep 2
